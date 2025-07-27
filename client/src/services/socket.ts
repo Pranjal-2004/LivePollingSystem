@@ -5,7 +5,9 @@ class SocketService {
 
   connect(): Socket {
     if (!this.socket) {
-      this.socket = io('http://localhost:3001');
+      this.socket = io(import.meta.env.VITE_SOCKET_SERVER_URL || 'http://localhost:3000', {
+        transports: ['websocket'],
+      });
     }
     return this.socket;
   }
